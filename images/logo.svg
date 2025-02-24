@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <!-- Background Circle -->
+  <circle cx="200" cy="200" r="200" fill="#4a6da7"/>
+  
+  <!-- Inner Circle -->
+  <circle cx="200" cy="200" r="180" fill="white"/>
+  
+  <!-- Stack of building blocks -->
+  <g transform="translate(100, 90)">
+    <!-- Bottom block -->
+    <rect x="50" y="160" width="100" height="60" rx="10" fill="#4a6da7"/>
+    
+    <!-- Middle block -->
+    <rect x="30" y="100" width="100" height="60" rx="10" fill="#8ac6d1"/>
+    
+    <!-- Top block -->
+    <rect x="70" y="40" width="100" height="60" rx="10" fill="#ffb347"/>
+    
+    <!-- Small decorative block -->
+    <rect x="120" y="0" width="40" height="40" rx="8" fill="#4a6da7" opacity="0.8"/>
+  </g>
+  
+  <!-- Play triangle symbol (hidden in blocks) -->
+  <path d="M180,170 L230,145 L230,195 Z" fill="white"/>
+</svg>

@@ -266,19 +266,26 @@
         }
         
         .submit-btn {
-            background-color: var(--primary);
-            color: white;
-            border: none;
-            padding: 12px 30px;
-            border-radius: 30px;
-            cursor: pointer;
-            font-size: 18px;
-            font-weight: 600;
-            transition: all 0.3s ease;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 150px;
         }
         
-        .submit-btn:hover {
-            background-color: var(--accent);
+        .loading-spinner {
+            position: absolute;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .submit-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
         }
         
         footer {
@@ -459,10 +466,10 @@
             <h2 class="section-title">Join Our Waiting List</h2>
             <div class="form-container">
                 <p>Be among the first to experience EarlyPlay and receive exclusive early access offers.</p>
-                <form id="waitlist-form">
+                <form id="waitlist-form" action="https://formspree.io/f/mbldvoyj" method="POST">
                     <div class="form-group">
                         <p style="color: #721c24; background-color: #f8d7da; padding: 10px; border-radius: 5px;">
-                            ⚠️ Demo Mode: This is a prototype. Please do not submit real information.
+                            ⚠️ Your information will be securely processed through Formspree.
                         </p>
                     </div>
                     <div class="form-group">
@@ -514,7 +521,16 @@
                         <label for="comments">How could our resources best support your EYFS curriculum delivery?</label>
                         <textarea id="comments" name="comments" rows="3"></textarea>
                     </div>
-                    <button type="submit" class="submit-btn">Submit</button>
+                    <button type="submit" class="submit-btn">
+                        <span class="submit-text">Submit</span>
+                        <span class="loading-spinner" style="display: none;">
+                            <svg width="20" height="20" viewBox="0 0 24 24">
+                                <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="4" stroke-dasharray="31.4 31.4">
+                                    <animateTransform attributeName="transform" type="rotate" from="0 12 12" to="360 12 12" dur="1s" repeatCount="indefinite"/>
+                                </circle>
+                            </svg>
+                        </span>
+                    </button>
                 </form>
             </div>
         </div>
@@ -528,13 +544,44 @@
     </footer>
 
     <script>
-        document.getElementById('waitlist-form').addEventListener('submit', function(e) {
+        const form = document.getElementById('waitlist-form');
+        const submitBtn = form.querySelector('.submit-btn');
+        const submitText = form.querySelector('.submit-text');
+        const loadingSpinner = form.querySelector('.loading-spinner');
+
+        form.addEventListener('submit', async function(e) {
             e.preventDefault();
-            const formData = new FormData(this);
             
-            // This would normally submit to your backend, but for demo purposes:
-            alert('Thank you for joining our waiting list! We will contact you soon with exclusive early access information.');
-            this.reset();
+            // Show loading state
+            submitBtn.disabled = true;
+            submitText.style.display = 'none';
+            loadingSpinner.style.display = 'inline-block';
+            
+            try {
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: new FormData(form),
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                if (response.ok) {
+                    // Success message
+                    alert('Thank you for joining our waiting list! We will contact you soon with exclusive early access information.');
+                    form.reset();
+                } else {
+                    throw new Error('Form submission failed');
+                }
+            } catch (error) {
+                alert('Sorry, there was a problem submitting your form. Please try again later.');
+                console.error('Form submission error:', error);
+            } finally {
+                // Reset button state
+                submitBtn.disabled = false;
+                submitText.style.display = 'inline';
+                loadingSpinner.style.display = 'none';
+            }
         });
     </script>
 </body>
