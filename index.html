@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EarlyPlay - EYFS-Aligned Activity Sets for UK Nurseries</title>
+    <style>
+        :root {
+            --primary: #4a6da7;
+            --secondary: #8ac6d1;
+            --accent: #ffb347;
+            --dark: #2c3e50;
+            --light: #f8f9fa;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background-color: var(--light);
+            padding: 20px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--accent);
+        }
+        
+        .hero {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            font-size: 36px;
+            color: var(--primary);
+        }
+        
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+        
+        .feature {
+            flex: 1 1 300px;
+            max-width: 350px;
+            padding: 30px;
+            border-radius: 10px;
+            background-color: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .feature:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .feature-icon {
+            font-size: 50px;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+        
+        .feature h3 {
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+        
+        .how-it-works {
+            background-color: var(--light);
+        }
+        
+        .steps {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 20px;
+        }
+        
+        .step {
+            flex: 1 1 250px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .step-number {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            color: white;
+            font-size: 28px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        
+        .testimonials {
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+            color: white;
+        }
+        
+        .testimonial {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 30px;
+            border-radius: 10px;
+            background-color: rgba(255,255,255,0.1);
+        }
+        
+        .testimonial-text {
+            font-size: 20px;
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+        
+        .pricing {
+            background-color: white;
+        }
+        
+        .plans {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+        
+        .plan {
+            flex: 1 1 300px;
+            max-width: 350px;
+            padding: 40px;
+            border-radius: 10px;
+            background-color: var(--light);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .plan:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .plan-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        .plan-price {
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        
+        .plan-features {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+        
+        .plan-features li {
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+        
+        .waitlist {
+            background-color: var(--light);
+            text-align: center;
+        }
+        
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 40px;
+            border-radius: 10px;
+            background-color: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        .submit-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .submit-btn:hover {
+            background-color: var(--accent);
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+        
+        .social-links {
+            margin-bottom: 20px;
+        }
+        
+        .social-link {
+            color: white;
+            font-size: 24px;
+            margin: 0 10px;
+            text-decoration: none;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .section-title {
+                font-size: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="#" class="logo">Early<span>Play</span></a>
+        </div>
+    </header>
+    
+    <section class="hero">
+        <div class="container">
+            <h1>Comprehensive EYFS Development Through Expertly Guided Play</h1>
+            <p>Durable toys and detailed activity guides that address all EYFS prime and specific areas while empowering practitioners to deliver purposeful, meaningful play experiences</p>
+            <a href="#waitlist" class="btn">Join our Waiting List</a>
+        </div>
+    </section>
+    
+    <section id="features">
+        <div class="container">
+            <h2 class="section-title">Supporting Child Development & Practitioner Excellence</h2>
+            <div class="features">
+                <div class="feature">
+                    <div class="feature-icon">📚</div>
+                    <h3>EYFS Framework Aligned</h3>
+                    <p>Each activity set is carefully designed to support specific EYFS learning goals and development areas.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">📝</div>
+                    <h3>Purposeful Interaction Guides</h3>
+                    <p>Detailed activity cards with age-appropriate developmental outcomes show exactly how to engage with children in ways that fulfill EYFS requirements from day one.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">👩‍🏫</div>
+                    <h3>Professional Practice Enhancement</h3>
+                    <p>Activity cards guide practitioners in delivering rich, developmentally appropriate experiences that simultaneously build their own professional expertise.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🧩</div>
+                    <h3>Expertly Curated</h3>
+                    <p>Created by experienced UK school leaders who understand the unique needs of early years education.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🔄</div>
+                    <h3>Regular Refreshes</h3>
+                    <p>New themed sets delivered each term to keep children engaged and learning throughout the year.</p>
+                </div>      
+                <div class="feature">
+                    <div class="feature-icon">📊</div>
+                    <h3>Progress Tracking</h3>
+                    <p>Simple observation guides help document children's development against EYFS requirements.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🔍</div>
+                    <h3>Inspection Ready</h3>
+                    <p>Evidence-based activities that demonstrate your commitment to quality early years education.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <h2 class="section-title">Holistic Development Through Guided Play</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Choose Your Package</h3>
+                    <p>Select a termly subscription covering all EYFS prime and specific areas.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Receive High-Quality Resources</h3>
+                    <p>Detailed activity cards arrive at the start of each term along with the durable toys and resources needed to bring learning to life.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Follow Scripted Interactions</h3>
+                    <p>Use our step-by-step prompts and example dialogues to facilitate developmentally purposeful play experiences.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Document & Share Progress</h3>
+                    <p>Track development with our simple tools and extend learning to home with parent partnership materials.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <h2 class="section-title">Choose Your Perfect Plan</h2>
+            <div class="plans">
+                <div class="plan">
+                    <div class="plan-title">Starter</div>
+                    <div class="plan-price">£249<span>/term</span></div>
+                    <ul class="plan-features">
+                        <li>1 comprehensive themed set per term</li>
+                        <li>High-quality, durable toys</li>
+                        <li>20 detailed activity cards with scripted prompts</li>
+                        <li>Coverage of all EYFS prime & specific areas</li>
+                        <li>Key vocabulary lists for language development</li>
+                        <li>Basic progress tracking templates</li>
+                        <li>Simple parent partnership materials</li>
+                    </ul>
+                    <a href="#waitlist" class="btn">Join Waiting List</a>
+                </div>
+                <div class="plan">
+                    <div class="plan-title">Standard</div>
+                    <div class="plan-price">£399<span>/term</span></div>
+                    <ul class="plan-features">
+                        <li>2 comprehensive themed sets per term</li>
+                        <li>High-quality, durable toys</li>
+                        <li>40 detailed activity cards with scripted prompts</li>
+                        <li>Coverage of all EYFS prime & specific areas</li>
+                        <li>Expanded vocabulary development resources</li>
+                        <li>Recycled materials activity guides</li>
+                        <li>Comprehensive progress tracking system</li>
+                        <li>Enhanced home-setting connection materials</li>
+                    </ul>
+                    <a href="#waitlist" class="btn">Join Waiting List</a>
+                </div>
+                <div class="plan">
+                    <div class="plan-title">Premium</div>
+                    <div class="plan-price">£549<span>/term</span></div>
+                    <ul class="plan-features">
+                        <li>3 comprehensive themed sets per term</li>
+                        <li>Premium-quality, durable toys</li>
+                        <li>60 detailed activity cards with scripted prompts</li>
+                        <li>Advanced coverage of all EYFS areas</li>
+                        <li>Complete vocabulary development system</li>
+                        <li>Extended recycled materials activity guides</li>
+                        <li>Curriculum delivery evidence portfolio</li>
+                        <li>Comprehensive parent partnership program</li>
+                        <li>Termly development consultation call</li>
+                    </ul>
+                    </ul>
+                    <a href="#waitlist" class="btn">Join Waiting List</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="waitlist" id="waitlist">
+        <div class="container">
+            <h2 class="section-title">Join Our Waiting List</h2>
+            <div class="form-container">
+                <p>Be among the first to experience EarlyPlay and receive exclusive early access offers.</p>
+                <form id="waitlist-form">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="nursery">Nursery/School Name</label>
+                        <input type="text" id="nursery" name="nursery" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="position">Your Position</label>
+                        <input type="text" id="position" name="position" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="children">Number of Children in Your Setting</label>
+                        <select id="children" name="children" required>
+                            <option value="">Please select</option>
+                            <option value="under20">Under 20</option>
+                            <option value="20-50">20-50</option>
+                            <option value="51-100">51-100</option>
+                            <option value="over100">Over 100</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="primary">Which prime area would you most like to focus on?</label>
+                        <select id="primary" name="primary">
+                            <option value="">Please select</option>
+                            <option value="communication">Communication & Language</option>
+                            <option value="physical">Physical Development</option>
+                            <option value="personal">Personal, Social & Emotional</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="specific">Which specific area would you most like to focus on?</label>
+                        <select id="specific" name="specific">
+                            <option value="">Please select</option>
+                            <option value="literacy">Literacy</option>
+                            <option value="mathematics">Mathematics</option>
+                            <option value="understanding">Understanding the World</option>
+                            <option value="expressive">Expressive Arts & Design</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="comments">How could our resources best support your EYFS curriculum delivery?</label>
+                        <textarea id="comments" name="comments" rows="3"></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Submit</button>
+                </form>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 EarlyPlay. All rights reserved.</p>
+            <p>Designed by UK educational leaders for UK early years settings.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('waitlist-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            
+            // This would normally submit to your backend, but for demo purposes:
+            alert('Thank you for joining our waiting list! We will contact you soon with exclusive early access information.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
